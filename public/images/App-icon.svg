@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Movie App Icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7A59"/>
+      <stop offset="100%" stop-color="#FF3D3D"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="24" flood-opacity="0.18"/>
+    </filter>
+    <clipPath id="rounded">
+      <rect x="64" y="64" width="896" height="896" rx="200" ry="200"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="64" y="64" width="896" height="896" rx="200" ry="200" fill="url(#bg)"/>
+
+  <!-- Clapperboard group -->
+  <g filter="url(#softShadow)" fill="#FFFFFF" clip-path="url(#rounded)">
+    <!-- Slate (main body) -->
+    <rect x="250" y="420" width="524" height="360" rx="56" ry="56"/>
+    <!-- Slate writing lines -->
+    <rect x="320" y="560" width="300" height="32" rx="16" ry="16"/>
+    <rect x="320" y="630" width="220" height="28" rx="14" ry="14"/>
+
+    <!-- Top clapper -->
+    <g transform="rotate(-10 512 360)">
+      <rect x="220" y="290" width="584" height="120" rx="28" ry="28"/>
+      <!-- Stripes -->
+      <g transform="translate(240 305)">
+        <polygon points="0,0 100,0 70,90 0,90" fill="#FF7A59"/>
+        <polygon points="110,0 210,0 180,90 80,90" fill="#FFFFFF"/>
+        <polygon points="220,0 320,0 290,90 190,90" fill="#FF7A59"/>
+        <polygon points="330,0 430,0 400,90 300,90" fill="#FFFFFF"/>
+        <polygon points="440,0 540,0 510,90 410,90" fill="#FF7A59"/>
+      </g>
+    </g>
+  </g>
+</svg>
