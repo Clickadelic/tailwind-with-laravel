@@ -27,6 +27,6 @@
         <main class="container mx-auto grow">
             @yield('content')
         </main>
-        @include('components.footer');
+        @include('components.footer')
     </body>
 </html>
