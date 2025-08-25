@@ -21,7 +21,7 @@
     </head>
     <body class="min-h-screen flex flex-col bg-slate-100">
         @include('components.header')
-        <div class="w-full py-24 bg-sky-700 flex items-center justify-center bg-camera">
+        <div class="w-full py-24 bg-sky-600 flex items-center justify-center bg-camera">
             <h2 class="text-white text-4xl">@yield('title')</h2>
         </div>
         <main class="container mx-auto grow py-6 transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
