@@ -24,7 +24,7 @@
         <div class="w-full py-12 bg-sky-800 flex items-center justify-center bg-camera">
             <h2 class="text-white text-4xl">GFN Movie DB</h2>
         </div>
-        <main class="container mx-auto grow">
+        <main class="container mx-auto grow py-6">
             @yield('content')
         </main>
         @include('components.footer')
