@@ -14,7 +14,7 @@
                     </a>
                 </header>
                 <div class="p-3">
-                    <p class="text-xs text-slate-600">Erscheinungsjahr: {{ $movie->released }}</p>
+                    <p class="text-xs text-slate-600">{{ $movie->released }}</p>
                     <h2 class="text-xl font-semibold text-slate-700">{{ $movie->title }}</h2>
                     <p class="text-sm text-slate-600 mb-3">{{ $movie->description }}</p>
                 </div>
