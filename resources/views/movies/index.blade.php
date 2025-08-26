@@ -22,6 +22,9 @@
                 <a href="{{ route('movies.show', $movie->id) }}" class="m-1 block text-center text-white rounded bg-sky-700 px-3 py-2 hover:bg-sky-800">Movie-Details</a>
             </div>
         @endforeach
+        @if($movies->count() === 0)
+            <p class="text-xl my-12 col-span-5 text-center text-slate-600">Lege Deinen ersten Film an.</p>
+        @endif
     </div>
 @endsection
 
