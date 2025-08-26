@@ -7,11 +7,13 @@
     @include('forms.movie-form')
     <h2 class="text-xl font-semibold text-slate-700 mb-3">Alle Filme</h2>
     <div class="relative w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
-        @foreach ($movies as $movie)
+        @forelse ($movies as $movie)
             <div class="rounded overflow-hidden border border-slate-200 bg-white">
                 <header>
                     <a href="{{ route('movies.show', $movie->id) }}" class="hover:opacity-80">
-                        <img src="./images/Default-Movie.jpg" alt="Default Movie Image" class="w-full aspect-video before:absolute before:top-0 before:left-0 before:bg-black/30">
+                        <img src="{{ asset('images/Default-Movie.jpg') }}" 
+                            alt="Default Movie Image" 
+                            class="w-full aspect-video before:absolute before:top-0 before:left-0 before:bg-black/30">
                     </a>
                 </header>
                 <div class="p-3">
@@ -19,12 +21,17 @@
                     <h2 class="text-xl font-semibold text-slate-700">{{ $movie->title }}</h2>
                     <p class="text-sm text-slate-600 mb-3">{{ $movie->description }}</p>
                 </div>
-                <a href="{{ route('movies.show', $movie->id) }}" class="m-1 block text-center text-white rounded bg-sky-700 px-3 py-2 hover:bg-sky-800">Movie-Details</a>
+                <a href="{{ route('movies.show', $movie->id) }}" 
+                class="m-1 block text-center text-white rounded bg-sky-700 px-3 py-2 hover:bg-sky-800">
+                Movie-Details
+                </a>
             </div>
-        @endforeach
-        @if($movies->count() === 0)
-            <p class="text-xl my-12 col-span-5 text-center text-slate-600">Lege Deinen ersten Film an.</p>
-        @endif
+        @empty
+            <p class="text-xl my-12 col-span-5 text-center text-slate-600">
+                Lege Deinen ersten Film an.
+            </p>
+        @endforelse
+        
     </div>
 @endsection
 

@@ -9,7 +9,13 @@
     </h2>
 
     <x-flash />
-    
+    @if($errors->any())
+        <ul class="list-disc list-inside text-red-600">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     <div>
         <input type="text" 
                name="title" 
