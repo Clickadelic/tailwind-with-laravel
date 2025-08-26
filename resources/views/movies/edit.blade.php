@@ -5,4 +5,3 @@
 @section('content')
     @include('forms.movie-form', ['movie' => $movie])
 @endsection
-

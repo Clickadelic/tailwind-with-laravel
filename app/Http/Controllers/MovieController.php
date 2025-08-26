@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class MovieController extends Controller
 {
     
-
+    
     /**
      * Display a listing of the resource.
      */
@@ -23,11 +23,11 @@ class MovieController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Since the show the form on the index page, we just redirect to it
      */
     public function create()
     {
-        //
+        return redirect()->route('movies.index');
     }
 
     /**
@@ -35,12 +35,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        Movie::create([
-            'title' => $request->title,
-            'released' => $request->released,
-            'description' => $request->description
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'released' => 'required|integer|min:1940|max:2050',
+            'description' => 'nullable|string',
         ]);
-        return redirect()->route('movies.index');
+
+        Movie::create($validated);
+        return redirect()->route('movies.index')->with('success', 'Film erfolgreich erstellt!');
     }
 
     /**
@@ -64,16 +66,28 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'released' => 'required|integer|min:1940|max:2050',
+            'description' => 'nullable|string',
+        ]);
+
+        $movie->update($validated);
+
+        return redirect()->route('movies.index')
+                         ->with('success', 'Film wurde aktualisiert!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+
+        return redirect()->route('movies.index')
+                         ->with('success', 'Film wurde gelöscht!');
     }
 }

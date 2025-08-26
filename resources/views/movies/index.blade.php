@@ -2,9 +2,10 @@
 
 @section('title', 'Movies')
 
+
 @section('content')
     @include('forms.movie-form')
-    <h2 class="text-xl font-semibold text-slate-700 mb-3">All Movies</h2>
+    <h2 class="text-xl font-semibold text-slate-700 mb-3">Alle Filme</h2>
     <div class="relative w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
         @foreach ($movies as $movie)
             <div class="rounded overflow-hidden border border-slate-200 bg-white">
