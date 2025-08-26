@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
@@ -17,14 +17,15 @@ class MovieController extends Controller
     public function index()
     {   
         // DB Objekt als Query Builder verwenden
-        $movies = DB::table('movies')->get();
+        // $movies = DB::table('movies')->get();
         // Oder die ControllerMethode ausführen
-        // $movies = Movie:all();
+        $movies = Movie::all();
         return view('movies.index', compact('movies'));
     }
 
     /**
-     * Since the show the form on the index page, we just redirect to it
+     * Since we show the form on the index page, we just redirect to it
+     * and don't need to create a create method and a route
      */
     public function create()
     {
@@ -64,9 +65,7 @@ class MovieController extends Controller
     public function update(StoreMovieRequest $request, Movie $movie)
     {
         $validated = $request->validated();
-
         $movie->update($validated);
-
         return redirect()->route('movies.index')
                          ->with('success', 'Film wurde aktualisiert!');
     }
@@ -77,7 +76,6 @@ class MovieController extends Controller
     public function destroy(StoreMovieRequest $request, Movie $movie)
     {
         $movie->delete();
-
         return redirect()->route('movies.index')
                          ->with('success', 'Film wurde gelöscht!');
     }

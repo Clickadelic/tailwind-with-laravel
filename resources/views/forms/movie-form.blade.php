@@ -41,11 +41,11 @@
     </div>
 
     <div>
-        <button type="submit" class="w-full px-3 py-2 bg-sky-700 text-slate-100 rounded hover:bg-sky-800 hover:cursor-pointer">
+        <x-button variant="success" class="w-full" size="xl" type="submit">
             {{ isset($movie) ? 'Speichern' : 'Anlegen' }}
-        </button>
+        </x-button>
     </div>
     @if(isset($movie))
-    <a href="{{ route('movies.index') }}" class="text-slate-700 hover:text-slate-500 hover:underline">Zurück</a>
+        <a href="{{ route('movies.index') }}" class="w-full text-slate-700 hover:text-slate-500 hover:underline">Zurück</a>
     @endif
 </form>
