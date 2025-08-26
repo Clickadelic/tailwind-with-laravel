@@ -83,7 +83,7 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request, Movie $movie)
     {
         $movie->delete();
 
