@@ -9,6 +9,7 @@
     </h2>
 
     <x-flash />
+    
     @if($errors->any())
         <ul class="list-disc list-inside text-rose-600">
             @foreach($errors->all() as $error)

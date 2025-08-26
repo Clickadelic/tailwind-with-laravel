@@ -29,3 +29,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 <!-- https://chatgpt.com/share/68a88b44-f944-8009-84a1-20f25e2097f5 -->
 <!-- Laravel Debugbar -->
 <!-- https://laraveldebugbar.com/ -->
+
+## Validated Requests erstellen
+
+php artisan make:request StoreMovieRequest

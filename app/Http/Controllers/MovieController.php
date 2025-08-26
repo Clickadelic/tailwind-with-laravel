@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Http\Requests\StoreMovieRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
@@ -33,15 +34,9 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'released' => 'required|integer|min:1940|max:2050',
-            'description' => 'nullable|string',
-        ]);
-
-        Movie::create($validated);
+        Movie::create($request->validated());
         return redirect()->route('movies.index')->with('success', 'Film erfolgreich erstellt!');
     }
 
@@ -66,13 +61,9 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Movie $movie)
+    public function update(StoreMovieRequest $request, Movie $movie)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'released' => 'required|integer|min:1940|max:2050',
-            'description' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         $movie->update($validated);
 
@@ -83,7 +74,7 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Movie $movie)
+    public function destroy(StoreMovieRequest $request, Movie $movie)
     {
         $movie->delete();
 
