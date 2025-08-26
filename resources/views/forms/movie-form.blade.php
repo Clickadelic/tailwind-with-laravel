@@ -10,7 +10,7 @@
 
     <x-flash />
     @if($errors->any())
-        <ul class="list-disc list-inside text-red-600">
+        <ul class="list-disc list-inside text-rose-600">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
