@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Director;
-
+use App\Http\Requests\StoreDirectorRequest;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 
 class DirectorController extends Controller
@@ -11,8 +12,8 @@ class DirectorController extends Controller
 
     public function index()
     {   
-       
-        return view('directors.index');
+        $directors = Director::all();
+        return view('directors.index', compact('directors'));
     }
 
     public function create()
@@ -20,9 +21,13 @@ class DirectorController extends Controller
         return redirect()->route('directors.index');
     }
 
-    public function store()
+    public function store(StoreDirectorRequest $request)
     {
-        return view('directors.store');
+        // $director = new Director();
+        // $director->fill($request->validated());
+        $director = new Director($request->validated());
+        $director->save();
+        return redirect()->route('directors.index')->with('success', 'Regisseur erfolgreich erstellt!');
     }
 
     public function update()
