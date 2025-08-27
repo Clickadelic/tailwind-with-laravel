@@ -42,9 +42,13 @@
     <div>
         <select name="director_id" class="w-full px-3 py-2 border border-slate-400 rounded bg-white">
             @foreach($directors as $director)
-                <option value="{{ $director->id }}" {{ old('director_id') == $director->id ? 'selected' : '' }}>{{ $director->name }}</option> <option value="{{ $director->id }}" {{ $movie->director_id ?? '' == $director->id || old('director_id') == $director->id || old('director_id') == $director->id || old('director_id') ? 'selected' : '' }}>{{ $director->name }}</option>
+                <option value="{{ $director->id }}" 
+                    {{ (old('director_id', $movie->director_id ?? '') == $director->id) ? 'selected' : '' }}>
+                    {{ $director->name }}
+                </option>
             @endforeach
         </select>
+
     </div>
     <div>
         <x-button variant="primary" class="w-full mb-3" type="submit">

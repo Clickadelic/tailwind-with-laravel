@@ -8,15 +8,23 @@
         <p class="text-sm text-slate-600 mb-3">Released: {{ $movie->released }}</p>
         <p class="text-slate-600 text-base mb-3">{{ $movie->description }}</p>
         <p class="text-slate-600 text-base mb-3">{{ $movie->director->name }}</p>
-        <a href="{{ route('movies.edit', $movie->id) }}" class="text-blue-600 hover:underline text-sm">Bearbeiten</a>
-        <form action="{{ route('movies.destroy', $movie) }}" method="POST" class="inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="text-red-600 hover:underline text-sm"
-                    onclick="return confirm('Diesen Film wirklich löschen?')">
-                Löschen
-            </button>
-        </form>
+        <div class="mb-3">
+            @foreach($movie->director->movies as $m)
+                <span class="rounded-sm bg-sky-600 text-white text-xs px-2 py-1">{{ $m->title }}</span>
+            @endforeach
+        </div>
+        
+        <div class="flex justify-end gap-3">
+            <a href="{{ route('movies.edit', $movie->id) }}" class="inline-flex text-blue-600 hover:underline text-sm">Bearbeiten</a>
+            <form action="{{ route('movies.destroy', $movie) }}" method="POST" class="inline-flex">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="text-red-600 hover:underline text-sm"
+                        onclick="return confirm('Diesen Film wirklich löschen?')">
+                    Löschen
+                </button>
+            </form>
+        </div>
     </div>
 
 @endsection

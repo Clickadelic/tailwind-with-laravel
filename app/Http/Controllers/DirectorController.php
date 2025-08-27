@@ -25,16 +25,16 @@ class DirectorController extends Controller
         // $director->fill($request->validated());
         $director = new Director($request->validated());
         $director->save();
-        return redirect()->route('directors.index')->with('success', 'Regisseur erfolgreich erstellt!');
+        return redirect()->route('directors.index')->with('success', 'Direktor erfolgreich erstellt!');
     }
 
-    public function show($id)
+    public function show(string $id)
     {   
         $director = Director::find($id);
         return view('directors.show', compact('director'));
     }
 
-    public function edit($id)
+    public function edit(string $id)
     {   
         $director = Director::find($id);
         return view('directors.edit', compact('director'));
@@ -49,12 +49,17 @@ class DirectorController extends Controller
     {   
         $validated = $request->validated();
         $director->update($validated);
-        return redirect()->route('movies.index')
-                         ->with('success', 'Film wurde aktualisiert!');
+        return redirect()->route('directors.index')
+                         ->with('success', 'Direktor wurde aktualisiert!');
     }
 
-    public function destroy()
+    public function destroy(Director $director)
     {
-        return view('directors.destroy');
+        try {
+        $director->delete();
+            return redirect()->route('directors.index')->with('success', 'Regisseur wurde gelöscht.');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('directors.index')->with('error', 'Dieser Regisseur kann nicht gelöscht werden, da er noch Filme hat.');
+        }
     }
 }
