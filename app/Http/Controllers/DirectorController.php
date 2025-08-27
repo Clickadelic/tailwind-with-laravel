@@ -7,18 +7,33 @@ use Illuminate\Http\RedirectResponse;
 
 class DirectorController extends Controller
 {
-    //
+    /**
+     * Displays a list of all directors.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {   
         $directors = Director::all();
         return view('directors.index', compact('directors'));
     }
 
+    /**
+     * Redirects to the director index page since we don't need a create page.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create()
     {
         return redirect()->route('directors.index');
     }
 
+    /**
+     * Store a newly created director in storage.
+     *
+     * @param  \App\Http\Requests\StoreDirectorRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreDirectorRequest $request)
     {
         // $director = new Director();
@@ -28,6 +43,12 @@ class DirectorController extends Controller
         return redirect()->route('directors.index')->with('success', 'Direktor erfolgreich erstellt!');
     }
 
+    /**
+     * Show the specified resource.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(string $id)
     {   
         $director = Director::find($id);
@@ -53,11 +74,18 @@ class DirectorController extends Controller
                          ->with('success', 'Direktor wurde aktualisiert!');
     }
 
+    /**
+     * Removes the specified director from storage.
+     *
+     * @param  \App\Models\Director  $director
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Director $director)
     {
         try {
-        $director->delete();
+            $director->delete();
             return redirect()->route('directors.index')->with('success', 'Regisseur wurde gelöscht.');
+            // Wir beschreiben den auftretenden Fehler mit der entsprechenden Fehlerklasse in PHP als Typ der Übergabe der Variab $e.
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('directors.index')->with('error', 'Dieser Regisseur kann nicht gelöscht werden, da er noch Filme hat.');
         }
