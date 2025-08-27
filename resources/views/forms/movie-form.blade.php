@@ -41,7 +41,7 @@
     </div>
 
     <div>
-        <x-button variant="success" class="w-full mb-3" size="xl" type="submit">
+        <x-button variant="primary" class="w-full mb-3" type="submit">
             {{ isset($movie) ? 'Speichern' : 'Anlegen' }}
         </x-button>
     </div>
