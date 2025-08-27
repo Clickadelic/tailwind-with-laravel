@@ -9,4 +9,14 @@ class Director extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * The movies that belong to the Director
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
 }

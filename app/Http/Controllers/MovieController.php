@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Http\Requests\StoreMovieRequest;
+use App\Models\Director;
+
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\DB;
 
@@ -20,7 +22,8 @@ class MovieController extends Controller
         // $movies = DB::table('movies')->get();
         // Oder die ControllerMethode ausführen
         $movies = Movie::all();
-        return view('movies.index', compact('movies'));
+        $directors = Director::all();
+        return view('movies.index', compact('movies', 'directors'));
     }
 
     /**

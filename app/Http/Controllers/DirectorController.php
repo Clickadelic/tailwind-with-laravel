@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Director;
 use App\Http\Requests\StoreDirectorRequest;
-use Illuminate\Contracts\Cache\Store;
-use Illuminate\Http\Request;
 
 class DirectorController extends Controller
 {
     //
-
     public function index()
     {   
         $directors = Director::all();
@@ -30,14 +27,22 @@ class DirectorController extends Controller
         return redirect()->route('directors.index')->with('success', 'Regisseur erfolgreich erstellt!');
     }
 
-    public function update()
-    {
+    /**
+     * Shows the form for editing a director
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StoreDirectorRequest $request)
+    {   
+        $director = Director::find($request->id);
+
         return view('directors.update');
     }
 
-    public function show()
-    {
-        return view('directors.show');
+    public function show(StoreDirectorRequest $request)
+    {   
+        $director = Director::find($request->id);
+        return view('directors.show', compact('director'));
     }
 
     public function destroy()

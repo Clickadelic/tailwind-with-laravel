@@ -25,7 +25,7 @@ Route::group(['prefix' => 'directors'], function () {
     Route::get('/', [DirectorController::class, 'index'])->name('directors.index');
     Route::get('/create', [DirectorController::class, 'create'])->name('directors.create');
     Route::post('/', [DirectorController::class, 'store'])->name('directors.store');
-    Route::get('/{directors}', [DirectorController::class, 'show'])->name('directors.show');
+    Route::get('/{id}', [DirectorController::class, 'show'])->name('directors.show');
     Route::get('/{directors}/edit', [DirectorController::class, 'edit'])->name('directors.edit');
     Route::put('/{directors}', [DirectorController::class, 'update'])->name('directors.update');
     Route::delete('/{directors}', [DirectorController::class, 'destroy'])->name('directors.destroy');

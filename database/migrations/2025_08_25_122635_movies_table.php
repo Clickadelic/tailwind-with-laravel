@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string("title");
             $table->integer("released");
             $table->string("description");
+            //$table->foreignId("director_id")->constrained("directors")->onDelete("cascade");
+            $table->foreignId("director_id")->constrained("directors");
             $table->timestamps();
         });
     }

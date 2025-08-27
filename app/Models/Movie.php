@@ -13,6 +13,12 @@ class Movie extends Model
     protected $fillable = [
         'title',
         'released',
-        'description'
+        'description',
+        'director_id'
     ];
+
+    public function director()
+    {
+        return $this->belongsTo(Director::class);
+    }
 }
