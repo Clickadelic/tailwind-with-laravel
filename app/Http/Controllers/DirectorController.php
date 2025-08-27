@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Director;
 use App\Http\Requests\StoreDirectorRequest;
+use Illuminate\Http\RedirectResponse;
 
 class DirectorController extends Controller
 {
@@ -27,22 +28,29 @@ class DirectorController extends Controller
         return redirect()->route('directors.index')->with('success', 'Regisseur erfolgreich erstellt!');
     }
 
+    public function show($id)
+    {   
+        $director = Director::find($id);
+        return view('directors.show', compact('director'));
+    }
+
+    public function edit($id)
+    {   
+        $director = Director::find($id);
+        return view('directors.edit', compact('director'));
+    }
+
     /**
      * Shows the form for editing a director
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreDirectorRequest $request)
+    public function update(StoreDirectorRequest $request, Director $director): RedirectResponse
     {   
-        $director = Director::find($request->id);
-
-        return view('directors.update');
-    }
-
-    public function show(StoreDirectorRequest $request)
-    {   
-        $director = Director::find($request->id);
-        return view('directors.show', compact('director'));
+        $validated = $request->validated();
+        $director->update($validated);
+        return redirect()->route('movies.index')
+                         ->with('success', 'Film wurde aktualisiert!');
     }
 
     public function destroy()
