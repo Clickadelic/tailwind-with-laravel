@@ -8,6 +8,7 @@ class Director extends Model
 {
     protected $fillable = [
         'name',
+        'director_id'
     ];
 
     /**
